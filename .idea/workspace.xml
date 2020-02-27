@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d2d79b6-1154-42a5-b79f-b48da9be46ed" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WZPzBOgULgYCK3BftGSL8NJq2B" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AsosiasiFrekuensiPenjualan" />
+  </component>
+  <component name="RunManager" selected="Python.server">
+    <configuration name="caritypo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/caritypo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="my_tokenize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_tokenize.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_olahdata" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_olahdata.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tictactoe" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tictactoe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.test_olahdata" />
+      <item itemvalue="Python.caritypo" />
+      <item itemvalue="Python.my_tokenize" />
+      <item itemvalue="Python.tictactoe" />
+      <item itemvalue="Python.server" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.server" />
+        <item itemvalue="Python.caritypo" />
+        <item itemvalue="Python.tictactoe" />
+        <item itemvalue="Python.test_olahdata" />
+        <item itemvalue="Python.my_tokenize" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d2d79b6-1154-42a5-b79f-b48da9be46ed" name="Default Changelist" comment="" />
+      <created>1579354403417</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579354403417</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="418" y="212" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579355677727">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="418" y="212" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1579355677727" />
+    <state x="743" y="312" width="424" height="483" key="FileChooserDialogImpl" timestamp="1582676258871">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="743" y="312" width="424" height="483" key="FileChooserDialogImpl/0.28.1920.1052@0.28.1920.1052" timestamp="1582676258871" />
+    <state width="1897" height="329" key="GridCell.Tab.0.bottom" timestamp="1582772231456">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="329" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231456" />
+    <state width="1897" height="172" key="GridCell.Tab.0.bottom/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472065" />
+    <state width="1897" height="329" key="GridCell.Tab.0.center" timestamp="1582772231455">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="329" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231455" />
+    <state width="1897" height="172" key="GridCell.Tab.0.center/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472064" />
+    <state width="1897" height="329" key="GridCell.Tab.0.left" timestamp="1582772231455">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="329" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231455" />
+    <state width="1897" height="172" key="GridCell.Tab.0.left/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472063" />
+    <state width="1897" height="329" key="GridCell.Tab.0.right" timestamp="1582772231456">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="329" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231456" />
+    <state width="1897" height="172" key="GridCell.Tab.0.right/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472065" />
+    <state width="1897" height="343" key="GridCell.Tab.1.bottom" timestamp="1580944765074">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="343" key="GridCell.Tab.1.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
+    <state width="1897" height="343" key="GridCell.Tab.1.center" timestamp="1580944765074">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="343" key="GridCell.Tab.1.center/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
+    <state width="1897" height="343" key="GridCell.Tab.1.left" timestamp="1580944765073">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="343" key="GridCell.Tab.1.left/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765073" />
+    <state width="1897" height="343" key="GridCell.Tab.1.right" timestamp="1580944765074">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state width="1897" height="343" key="GridCell.Tab.1.right/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
+    <state x="595" y="192" width="672" height="678" key="search.everywhere.popup" timestamp="1581937848195">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="595" y="192" width="672" height="678" key="search.everywhere.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1581937848195" />
+  </component>
+</project>

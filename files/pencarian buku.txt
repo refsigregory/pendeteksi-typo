@@ -1,0 +1,352 @@
+APLIKASI PENCARIAN BUKU DI PERPUSTAKAAN MENGGUNAKAN METODE BOOLEAN QUERY BERBASIS VOICE RECOGNITION
+(Studi Kasus: Perpustakaan Universitas Katolik De La Salle Manado)
+
+PROPOSAL TUGAS AKHIR
+
+
+Disusun oleh:
+Angel Amelia Leasiwal
+(16013001)
+    1.
+       BAB I
+PENDAHULUAN
+           1.1 Latar Belakang
+	Perpustakaan adalah salah satu fasilitas yang disediakan oleh Universitas untuk tempat mahasiswa belajar, di perpustakaan terdapat banyak buku yang bisa digunakan mahasiswa untuk menjadi referensi bagi mahasiswa.
+	Buku yang ada di perpustakaan sangat banyak sehingga dibutuhkan aplikasi untuk melakukan pencarian buku agar memudahkan dalam menemukan buku yang dicari. Untuk melakukan pencarian buku, biasanya cukup mengetik kata kunci seperti judul, penerbit dan pengarang, namun untuk mempercepat dan memudahkan pencarian, dibutuhkan sebuah aplikasi yang dapat melakukan pencarian buku hanya dengan menggunakan suara. Selain itu, aplikasi ini nantinya dapat memberikan informasi dalam bentuk suara.
+	Penggunaan suara dalam melakukan pencarian juga bisa memudahkan bagi pengguna disabilitas untuk mencari buku yang di inginkan. Dalam pencarian buku mengunakan metode boolean query berbasis voice recognition. Metode boolean dan sistem keyword queries sering digunakan pada sistem temu kembali (information retrieval system)[ CITATION Fai19 \l 1033 ]. Tujuan dari sistem temu kembali yaitu untuk mendapatkan dokumen yang relevan. Pengguna hanya cukup memberikan kata kunci yang dalam hal adalah berupa suara uang akan dikenali dan menjadi kata kunci yang akan digunakan dalam pencarian. Sistem pengambilan ini akan mencari dokumen yang sesuai dengan kata kunci dan menampilkan hasil pencarian. Boolean query biasanya menggunakan operator Boolean, AND dan OR. Jika menggunakan AND berarti kedua kueri harus menemukan dokumen yang memiliki keduanya, dan jika OR hanya cukup salah satu. Boolean query bisa digunakan untuk melakukan pencarian informasi seperti pada salah satu jurnal yang dipelajari, metode Boolean query dapat diimplementasikan untuk melakukan  perhitungan jarak terdekat dalam memberikan rekomendasi majelis yang dalam hal ini adalah lembaga swadaya masyarakat murni di bidang dakwah[ CITATION Fai19 \l 1033 ], Selain itu sistem temu kembali dapat membantu petugas kepolisian melakukan pencarian dokumen pelanggaran hukum dengan cepat dan tepat, sistem temu kembali mampu membaca isi dokumen berekstensi .docx yang sering di gunakan[ CITATION Yul17 \l 1033 ].
+	Aplikasi yang akan dibangun akan menggunakan metode Boolean query untuk mencari buku di perpustakaan, seperti yang diterapkan pada beberapa jurnal diatas metode Boolean query dapat melakukan pencarian dengan tepat dan cepat. Untuk memudahkan pencarian aplikasi ini dibuat berbasis voice recognition.
+
+           1.2 Perumusan Masalah
+	Bagaimana cara memudahkanpencarian buku bagi pengunjung perpustakan Universitas Katolik De La Salle Manado terutama untuk penyandang distabilitas?
+           1.3 Tujuan Tugas Akhir
+	Memudahkan pencarian buku bagi pengunjung perpustakan Universitas Katolik De La Salle Manado terutama untuk penyandang distabilitas.
+           1.4 Manfaat Tugas Akhir
+    1) Dapat memudahkan dalam pencarian buku di perpustakaan.
+    2) Memudahkan penyandang distabilitas untuk mencari buku di perpustakaan.
+           1.5 Batasan Masalah
+    1) Hanya mengenal suara dengan Bahasa Indonesia.
+    2) Tidak dapat mengenal suara yang tidak dalam kondisi normal.
+           1.6 Metodologi Penelitian
+Metodologi yang digunakan dalam penyusuan Tugas Akhir adalah sebagai berikut :
+    1. Identifikasi Masalah
+    2. Penentuan Tujuan
+    3. Studi Pustaka
+    4. Analisis dan pengumpulan data
+    5. Perancangan
+    6. Implementasi
+    7. Pengujian
+    8. Kesimpulan dan rekomendasi
+           1.7 Sistematika Penulisan
+BAB I PENDAHULUAN
+	Bab ini terdiri dari tujuh sub-bab, yaitu membahas latar belakang masalah, perumusan masalah, tujuan tugas akhir, manfaat tugas akhir, ruang lingkup dan batasan masalah, metodologi penelitian dan sistematika penulisan laporan.
+BAB II STUDI PUSTAKA
+	Bab ini berisi teori-teori pendukung yang menjadi referensi dalam merancang aplikasi dan menyelesaikan penulisan laporan.
+BAB III ANALISIS
+	Bab ini menjelaskan analisis dan persyaratan dari aplikasi yang akan dibangun.
+BAB IV PERANCANGAN
+	Bab ini menjelaskan perancangan dari aplikasi yang didasarkan pada hasil analisis sebelumnya.
+BAB V IMPLEMENTASI
+	Bab ini menjelaskan langkah-langkah atau tahapan-tahapan yang dilakukan dalam pembuatan program. Didasarkan juga pada tahap perancangan yang telah dilakukan.
+BAB VI PENGUJIAN
+	Bab ini berisi hasil tentang evaluasi dan uji coba yang dilakukan terhadap program yang telah dibangun.
+BAB VII KESIMPULAN DAN SARAN
+	Bab ini berisi mengenai kesimpulan pengajaran tugas akhir yang dilakukan dan saran yang dapat membantu pembangunan terhadap aplikasi yang dilakukan.
+
+           2.   Jadwal Kerja
+No
+Kegiatan
+Januari
+Februari
+Maret
+April
+Mei
+Juni
+Juli
+1
+Analisis Masalah
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+Penyusunan Proposal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+Pengajuan Proposal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4
+Sidang Proposal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5
+Pembuatan Program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6
+Pembuatan Laporan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7
+Pengumpulan Laporan Hardcopy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8
+Sidang TA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9
+Pengumpulan Harcover Laporan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR PUSTAKA
+
+[1]
+W. A. Faisalnur, "Sistem Informasi Rekomendasi Majelis Berdasarkan Jarak Terdekat," Jurnal Mahasiswa Teknik Informatika, pp. 320-326, 2019.
+[2]
+N. Yuliani, "Sistem Temu Kembali dokumen pelanggaran Hukum Dengan Metode Boolean," UNWIRA, Kupang, 2017.
+
+

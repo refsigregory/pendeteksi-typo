@@ -1,0 +1,539 @@
+<!-- templates/index.html -->
+<html>
+  <head>
+    <title>Deteksi Typo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <style>
+      body {
+      }
+      .container {
+      }
+
+     #input-text{
+        height: auto;
+        min-height: 200px;
+      }
+
+      textarea, #output-text,  #output-text:hover {
+        border: none !important;
+        transition: none !important;
+      }
+
+      #input-area {
+        margin: 20px 0px 0px 0px;
+        border: solid 1px #ccc;
+        border-radius: 0 0 0 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      #input-text, #output-text {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color:
+        #495057;
+        background-color:
+        #fff;
+        background-clip: padding-box;
+        border: 1px solid
+        #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+
+      .progress {
+        margin: 0px 0px 20px 0px;
+        height: 5px;
+       }
+
+       .rekom {
+        background: rgba(255,255,255,0.7);
+        position: absolute;
+        color: #333;
+        font-size: 10pt;
+        padding: 5px;
+        border-radius: 0 0 0 2px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+       }
+
+       .badge {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+
+       }
+
+       .counter {
+          text-align: right;
+          padding: 10px;
+       }
+    </style>
+  </head>
+  <body>
+      <!-- As a heading -->
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Pendeteksi Typo</span>
+    </nav>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <div class="container">
+
+       <!--<div class="row">
+        <div class="col">
+          <div class="form-group">
+            <button class="btn btn-outline-primary"><i class="fa fa-file"></i> Dokumen</button>
+          </div>
+        </div>
+       </div>-->
+
+      <div class="row" id="input-area">
+        <div class="col" style="border-right: solid 1px #ccc !important;">
+          <div class="form-group">
+            <label></label>
+            <textarea class="form-control" id="input-text"></textarea>
+            <div class="counter"></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label></label>
+            <div id="output-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Koreksi Kata</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <div class="form-group">
+            <label>Kata</label>
+            <input type="text" class="form-control" id="kata_typo" name="kata_typo" value="" readonly>
+          </div>
+          <div class="form-group">
+            <label>Kata Baku  <small>(Kata yang seharusnya)</small></label>
+            <input type="text" class="form-control" id="kata_baku" name="kata_baku" value="">
+          </div>
+          <div class="form-group">
+            <label>Typo?  <small>(Kata ini salah dalam penulisan)</small></label>
+            <select class="form-control" id="typo" name="ini_typo">
+              <option>YA</option>
+              <option>TIDAK</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Baku?  <small>(Kata ini ada dalam KBBI)</small></label>
+            <select class="form-control" id="baku" name="ini_baku">
+              <option>YA</option>
+              <option>TIDAK</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <label>Valid? <small>(Kata ini bisa digunakan)</small></label>
+            <select class="form-control" id="valid" name="ini_valid">
+              <option>YA</option>
+              <option>TIDAK</option>
+            </select>
+          </div>
+          <!--<input type="hidden" id="valid" name="ini_valid" value="TIDAK">-->
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button id="sendKoreksi" class="btn btn-primary">KIRIM</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">BATALKAN</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.7/bootstrap-notify.min.js"></script>
+  <script>
+  /*
+  $.notify({
+      // options
+      message: 'Anda harus login dahulu!'
+  },{
+      // settings
+      type: 'danger',
+    delay: '3000',
+    animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+      },
+  });
+  */
+
+  var typos = document.querySelectorAll('.typo');
+
+  let getKata = (text) => {
+    var request = $.ajax({
+      type: 'POST',
+      url: 'http://localhost:5000/start_checker',
+      data: { text : $('#input-text').val() },
+      timeout: 50000,
+      dataType: "html"
+    });
+   request.done(function( res ) {
+         result = JSON.parse(res)
+          $.each(result, function(key, value) {
+                console.log(value)
+          });
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+        alert( "Request failed: " + textStatus );
+        $('.progress').hide();
+      });
+  };
+
+  $('#myModal').on('show.bs.modal', function (event) {
+    var myVal = $(event.relatedTarget).data('id');
+    var text = $(event.relatedTarget).data('text');
+    let res = ""
+    var req = $.ajax({
+        type: 'POST',
+        url: 'check_kata',
+        data: { text : text },
+        dataType: "html"
+      });
+
+      req.done(function( res ) {
+            res = JSON.parse(res)
+            console.log(res)
+            //res = $('#' + myVal).data('text');
+            //$('#myModal').find(".modal-body").text(res);
+            $('#kata_typo').val(res[0])
+            $('#kata_baku').val(res[1])
+            $('#typo').val(res[2])
+            $('#baku').val(res[3])
+      });
+
+
+      //$(this).find(".modal-body").text(res);
+  });
+
+  $('.progress').hide();
+  $('.rekom').hide();
+
+    $('#input-text').keyup(function(){
+      $('.progress').hide();
+      $('.progress-bar').css('width', '0%')
+
+      $('#output-text').html($('#input-text').val())
+      let inputtext = $('#input-text').val();
+      let count = 0;
+      $.each(inputtext.split(" "), function(key, value) {
+        count = count + 1;
+      });
+      $(".counter").html(count + "/500");
+
+      if (count >= 500)
+      {
+        alert("Jumlah kata yang disarankan adalah 500 kata");
+        $('#input-text').val($('#input-text').val())
+      }
+    })
+
+    function start_checker() {
+      $('.progress').show();
+      console.log('Starting...')
+      $('#input-text').val($('#input-text').val() + " "); // add space
+
+      $('.progress-bar').css('width', '20%')
+      $.notify({
+      // options
+      message: "Getting information..."
+      },{
+      // settings
+      type: 'warning',
+      delay: '100',
+      placement: {
+              from: "top",
+              align: "center"
+          },
+      allow_dismiss: false,
+      z_index: 0,
+      animate: {
+      enter: 'animated fadeInDown',
+      exit: 'animated fadeOutUp'
+      },
+      });
+
+      let outputtext = $('#output-text').html().trim();
+      $('#output-text').html('');
+      $.each(outputtext.split(" "), function(key, value) {
+          $('#output-text').append('<div class="typo badge badge-default" id="typo-' + key + '" data-text="'+value+'">'+value+'<div class="rekom rekom-' + key + '"></div></div>');
+      });
+
+      $('.rekom').hide();
+
+          var request = $.ajax({
+            type: 'POST',
+            url: 'http://localhost:5000/start_checker',
+            data: { text : $('#input-text').val() },
+            timeout: 50000, // timeoutchekcer
+            dataType: "html"
+          });
+          request.done(function( res ) {
+          if(res != "") {
+           result = JSON.parse(res)
+           value = result
+
+          $.notify({
+          // options
+          message: "Fetching data.."
+          },{
+          // settings
+          type: 'warning',
+          delay: '100',
+          placement: {
+                  from: "top",
+                  align: "center"
+              },
+          allow_dismiss: false,
+          z_index: 0,
+          animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+          },
+          });
+
+           $.each(result, function(key, value) {
+                console.log('Result:')
+                console.log(value)
+                if(value.length > 0) {
+                  if(value != "-")
+                  {
+                    //value = value.toLowerCase();
+                  }
+                  $('.progress-bar').css('width', '79%')
+                  let kata = value[0];
+                  let baku = value[1];
+                  let valid = value[2];
+                  let new_text = ' ' + $('#output-text').html().toLowerCase() + ' ';
+                  let replace_text = new_text; //new_text.replace(' ' + value[0] + ' ', ' <div class="typo badge badge-danger" id="typo-' + key + '" data-text="'+value+'">'+value+'<div class="rekom rekom--' + key + '"></div></div> '); //new_text.replace(' ' + value + ' ', ' ['+value+'] ');
+
+                  if(baku == "TIDAK" && valid == "YA")
+                  { // kata valid tapi tidak baku
+                    replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-default" id="typo-' + key + '" data-text="'+kata+'"><i>'+kata+'</i></span><');
+                  } else if(baku == "YA" && valid == "TIDAK")
+                  { // kata baku tapi tidak valid
+                    replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-warning" id="typo-' + key + '" data-text="'+kata+'">'+kata+'</span><');
+                  } else {
+                    replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-danger" id="typo-' + key + '" data-text="'+kata+'">'+kata+'</span><');
+                  }
+
+                  $('#output-text').html(replace_text)
+                  //console.log(replace_text)
+
+                 }
+           });
+          }
+          let typos = document.querySelectorAll('.typo');
+          Array.from(typos).forEach(box => {
+            $('.rekom').hide();
+            $('.rekom').html('');
+            box.addEventListener('click', function(e) {
+              e.target.classList.toggle('clicked');
+              //console.log(box.getAttribute('data-text'));
+              $.notify({
+                    // options
+                    message: "Setiap koreksi Anda akan meningkatkan hasil pengecekan."
+                },{
+                    // settings
+                    type: 'info',
+                  delay: '3000',
+                  placement: {
+                  from: "bottom",
+                  align: "center"
+                   },
+                  animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    },
+                });
+              let text = box.getAttribute('data-text');
+               var req = $.ajax({
+                  type: 'POST',
+                  url: 'check_kata',
+                  data: { text : text },
+                  timeout: 50000,
+                  dataType: "html"
+                });
+               req.done(function( res ) {
+                    /*$.notify({
+                    // options
+                    message: "Getting information..."
+                    },{
+                    // settings
+                    type: 'warning',
+                    delay: '100',
+                    placement: {
+                            from: "top",
+                            align: "center"
+                        },
+                    allow_dismiss: false,
+                    z_index: 0,
+                    animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                    },
+                    });*/
+                     result = JSON.parse(res)
+                      console.log('Typo:')
+                      console.log(result)
+                      value = result
+                      //$.each(result, function(key, value) {
+                             let html_koreksi = '<br><a href="" style="color: gray; font-size: 8pt" data-toggle="modal" data-id="'+box.getAttribute('id')+'" data-text="'+value[0]+'" data-target="#myModal">Koreksi?</a>';
+                             $('#' + box.getAttribute('id') + ' > .rekom').show();
+                             $('#' + box.getAttribute('id') + ' > .rekom').html('');
+                             if(value[1] != '') {
+                              $('#' + box.getAttribute('id') + ' > .rekom').html("Harusnya : "+value[1]);
+                             }
+                             $('#' + box.getAttribute('id') + ' > .rekom').append(html_koreksi);
+                      //});
+                });
+                req.fail(function( jqXHR, textStatus ) {
+                  console.log('Error...' + textStatus );
+                  //alert( "Request failed: " + textStatus );
+                     $.notify({
+                        // options
+                        message: textStatus
+                    },{
+                        // settings
+                        type: 'danger',
+                      delay: '3000',
+                      animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                        },
+                    });
+                  $('.progress').hide();
+                });
+            });
+            Array.from(typos).forEach(box => {
+               box.addEventListener('mouseleave', function(e) {
+                  e.target.classList.toggle('clicked');
+                  $('.rekom').html('');
+                  $('.rekom').hide();
+                });
+              });
+            });
+            $('.progress-bar').css('width', '100%')
+            setTimeout(function() {  $('.progress').hide(); $('.progress-bar').css('width', '0%') }, 2000); // reset loading
+            console.log('Finished...')
+          })
+          request.fail(function( jqXHR, textStatus ) {
+            console.log('Error...' + textStatus );
+
+            $('.progress').hide();
+            if(textStatus == 'timeout') {
+              $.notify({
+              // options
+              message: "Retrying..."
+              },{
+              // settings
+              type: 'warning',
+              delay: '100',
+              placement: {
+                      from: "top",
+                      align: "center"
+                  },
+              allow_dismiss: false,
+              z_index: 0,
+              animate: {
+              enter: 'animated fadeInDown',
+              exit: 'animated fadeOutUp'
+              },
+              });
+
+              $('#output-text').html($('#input-text').val())
+              start_checker();
+            } else {
+               $.notify({
+                    // options
+                    message: textStatus
+                },{
+                    // settings
+                    type: 'danger',
+                  delay: '3000',
+                  animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    },
+                });
+            }
+          });
+    }
+
+    $('#input-text').change(function(){
+      start_checker()
+    });
+
+
+
+    $(function(){
+        // Enables popover
+        $("[data-toggle=popover]").popover();
+    });
+
+   $("#sendKoreksi").click(function(){
+    $.post("insert_kata",
+    {
+      kata_typo: $('#kata_typo').val(),
+      kata_baku: $('#kata_baku').val(),
+      ini_typo: $('#typo').val(),
+      ini_baku: $('#baku').val(),
+      ini_valid: $('#valid').val()
+    },
+    function(data, status){
+      //alert("Terima kasih untuk koreksi yang diberikan");
+            $.notify({
+                // options
+                message: "Terima kasih untuk koreksi yang diberikan"
+            },{
+                // settings
+                type: 'success',
+              delay: '3000',
+              placement: {
+                  from: "bottom",
+                  align: "center"
+              },
+              animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+            });
+            console.log("Data: " + data + "\nStatus: " + status);
+            $('#myModal').modal('hide')
+
+            $('#output-text').html($('#input-text').val())
+            start_checker(); // ulangi pengecekan
+        });
+  });
+
+
+  </script>
+  </body>
+</html>
