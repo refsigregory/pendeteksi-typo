@@ -8,7 +8,7 @@
 * Buka `127.0.0.1:5000` di Browser
 
 # Fitur Tambahan
-Cara penggunaan dengan mengakses 127.0.0.1/`command`
+Cara penggunaan dengan mengakses 127.0.0.1:5000/`command`
 
 Command:
 
