@@ -1,4 +1,4 @@
-# Pendeteksi Typo Q-Learning
+# Pendeteksi Typo Q-Learning (github.com/refsigregory/pendeteksi-typo)
 
 # Cara Install
 * Install Python>=3.9
@@ -7,6 +7,7 @@
 * Buka `127.0.0.1:5000` di Browser
 
 # Fitur Tambahan
+Cara penggunaan dengan mengakses 127.0.0.1/`command`
+Command:
 * `kamus_data` untuk melihat kamus kata
 * `reset_kata` untuk membersihkan kamus kata
-Cara penggunaan dengan mengakses 127.0.0.1/`command`
