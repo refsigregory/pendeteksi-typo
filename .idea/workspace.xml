@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d2d79b6-1154-42a5-b79f-b48da9be46ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/kamus_typo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/kamus_typo.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ref_pendeteksi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ref_pendeteksi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -35,8 +40,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../AsosiasiFrekuensiPenjualan" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
-  <component name="RunManager" selected="Python.server">
+  <component name="RunManager" selected="Python.main">
     <configuration name="caritypo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PencarianKataTidakBaku" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -58,6 +64,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PencarianKataTidakBaku" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="my_tokenize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PencarianKataTidakBaku" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -71,27 +98,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_tokenize.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PencarianKataTidakBaku" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,14 +150,14 @@
     </configuration>
     <list>
       <item itemvalue="Python.caritypo" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.my_tokenize" />
-      <item itemvalue="Python.server" />
       <item itemvalue="Python.test_olahdata" />
       <item itemvalue="Python.tictactoe" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.server" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.caritypo" />
         <item itemvalue="Python.tictactoe" />
         <item itemvalue="Python.test_olahdata" />
@@ -185,53 +191,29 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="418" y="212" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579355677727">
+    <state width="1897" height="186" key="GridCell.Tab.0.bottom" timestamp="1594818023379">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="418" y="212" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1579355677727" />
-    <state x="743" y="312" width="424" height="483" key="FileChooserDialogImpl" timestamp="1582676258871">
+    <state width="1897" height="186" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1594818023379" />
+    <state width="1897" height="186" key="GridCell.Tab.0.center" timestamp="1594818023379">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="743" y="312" width="424" height="483" key="FileChooserDialogImpl/0.28.1920.1052@0.28.1920.1052" timestamp="1582676258871" />
-    <state width="1897" height="329" key="GridCell.Tab.0.bottom" timestamp="1582772231456">
+    <state width="1897" height="186" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1594818023379" />
+    <state width="1897" height="186" key="GridCell.Tab.0.left" timestamp="1594818023378">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1897" height="329" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231456" />
-    <state width="1897" height="172" key="GridCell.Tab.0.bottom/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472065" />
-    <state width="1897" height="329" key="GridCell.Tab.0.center" timestamp="1582772231455">
+    <state width="1897" height="186" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1594818023378" />
+    <state width="1897" height="186" key="GridCell.Tab.0.right" timestamp="1594818023379">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1897" height="329" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231455" />
-    <state width="1897" height="172" key="GridCell.Tab.0.center/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472064" />
-    <state width="1897" height="329" key="GridCell.Tab.0.left" timestamp="1582772231455">
+    <state width="1897" height="186" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1594818023379" />
+    <state x="503" y="143" key="SettingsEditor" timestamp="1595482851897">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1897" height="329" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231455" />
-    <state width="1897" height="172" key="GridCell.Tab.0.left/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472063" />
-    <state width="1897" height="329" key="GridCell.Tab.0.right" timestamp="1582772231456">
+    <state x="503" y="143" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1595482851897" />
+    <state x="623" y="240" key="search.everywhere.popup" timestamp="1592211652395">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1897" height="329" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1582772231456" />
-    <state width="1897" height="172" key="GridCell.Tab.0.right/0.28.2944.1052@0.28.2944.1052" timestamp="1580953472065" />
-    <state width="1897" height="343" key="GridCell.Tab.1.bottom" timestamp="1580944765074">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state width="1897" height="343" key="GridCell.Tab.1.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
-    <state width="1897" height="343" key="GridCell.Tab.1.center" timestamp="1580944765074">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state width="1897" height="343" key="GridCell.Tab.1.center/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
-    <state width="1897" height="343" key="GridCell.Tab.1.left" timestamp="1580944765073">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state width="1897" height="343" key="GridCell.Tab.1.left/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765073" />
-    <state width="1897" height="343" key="GridCell.Tab.1.right" timestamp="1580944765074">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state width="1897" height="343" key="GridCell.Tab.1.right/0.28.1920.1052@0.28.1920.1052" timestamp="1580944765074" />
-    <state x="595" y="192" width="672" height="678" key="search.everywhere.popup" timestamp="1581937848195">
-      <screen x="0" y="28" width="1920" height="1052" />
-    </state>
-    <state x="595" y="192" width="672" height="678" key="search.everywhere.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1581937848195" />
+    <state x="623" y="240" key="search.everywhere.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1592211652395" />
   </component>
 </project>

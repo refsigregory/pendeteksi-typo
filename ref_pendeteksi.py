@@ -1,15 +1,11 @@
-import pandas as pd
-import re
+import pandas as pd, numpy as np, re, json, csv
 from collections import Counter
 from pathlib import Path
-import csv
 from urllib.request import urlopen, Request
-import json
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-import numpy as np
 
-class PendeteksiKataTidakBaku:
-    def resetKamusKata(self):
+class Pendeteksi:
+    def clearData(self):
         text = "kata_typo,kata_benar,ini_typo,ini_baku,ini_valid,value"
         text_file = open("data/kamus_typo.csv", "w")
         text_file.write(text + "\n")
@@ -35,7 +31,16 @@ class PendeteksiKataTidakBaku:
 
         return hasil_tokenize
 
-    def cekKata(kata, kamus):
+    def showWords(self):
+        kata = pd.read_csv(Path('data/kamus_typo.csv'), delimiter=",")
+
+        hasil_ditemukan = ""
+        if len(kata) > 0:
+            hasil_ditemukan = kata.values.tolist()
+
+        return hasil_ditemukan
+
+    def checkWord(kata, kamus):
         kamus_kata = pd.read_csv(Path(kamus), delimiter=",")
 
         hasil_ditemukan = ""
@@ -46,7 +51,7 @@ class PendeteksiKataTidakBaku:
 
         return hasil_ditemukan
 
-    def cekKataMaxValue(kata, kamus):
+    def checkWords(kata, kamus):
         kamus_kata = pd.read_csv(Path(kamus), delimiter=",")
 
         hasil_ditemukan = ""
@@ -92,7 +97,7 @@ class PendeteksiKataTidakBaku:
 
         return hasil_ditemukan
 
-    def getKataMaxValue(kata, kamus):
+    def getWords(kata, kamus):
         kamus_kata = pd.read_csv(Path(kamus), delimiter=",")
 
         hasil_ditemukan = ""
@@ -113,7 +118,7 @@ class PendeteksiKataTidakBaku:
         return hasil_ditemukan
 
 
-    def cekKataTypo(kata, kamus):
+    def checkTypo(kata, kamus):
         kamus_kata = pd.read_csv(Path(kamus), delimiter=",")
 
         hasil_ditemukan = ""
@@ -124,7 +129,7 @@ class PendeteksiKataTidakBaku:
 
         return hasil_ditemukan
 
-    def tambahKamus(file,list_element):
+    def addWord(file,list_element):
         #typo = typo.upper()
         #baku = baku.upper()
         with open(file, 'a+', newline='') as write_obj:
@@ -134,7 +139,7 @@ class PendeteksiKataTidakBaku:
             csv_writer.writerow(list_element)
         #writer.writerow([salah, benar, typo, baku])
 
-    def tambahSaran(self, file,list_element):
+    def addCorrection(self, file,list_element):
         typo = list_element[2].upper()
         baku = list_element[3].upper()
         if baku == "":
@@ -143,7 +148,7 @@ class PendeteksiKataTidakBaku:
         salah = list_element[0]
         benar = list_element[1]
         reward = 0
-        hasil_ditemukan = self.cekKata(list_element[0], file)
+        hasil_ditemukan = self.checkWord(list_element[0], file)
         if hasil_ditemukan is not "":
             for hasil in hasil_ditemukan:
                 if hasil[2] == typo and hasil[3] == baku and hasil[4] == valid and hasil[1] == benar:
@@ -170,7 +175,7 @@ class PendeteksiKataTidakBaku:
             csv_writer.writerow([salah, benar, typo, baku, valid, 0]) # tambah saran
         #writer.writerow([salah, benar, typo, baku])
 
-    def cek_KBBI(kata):
+    def checkKBBI(kata):
         try:
             r = Request('http://kateglo.com/api.php?format=json&phrase=' + kata, headers={'User-Agent': 'Mozilla/5.0'})
             response = urlopen(r).read()
@@ -181,8 +186,8 @@ class PendeteksiKataTidakBaku:
         except:
             return None
 
-    def iniKataBaku(self, kata):
-        hasil_kata = self.cek_KBBI(kata)
+    def hasKBBI(self, kata):
+        hasil_kata = self.checkKBBI(kata)
         if hasil_kata is not None:
             if hasil_kata['phrase_type'] is None:
                 return False
@@ -191,7 +196,7 @@ class PendeteksiKataTidakBaku:
         else:
             return False
 
-    def stemKata(kata):
+    def stemWord(kata):
         # Check Typo
         factory = StemmerFactory()
         stemmer = factory.create_stemmer()
@@ -199,10 +204,10 @@ class PendeteksiKataTidakBaku:
         kata_stem = stemmer.stem(kata)
         return  kata_stem
 
-    def pengecekanKBBI(self, daftar_kata):
+    def checkerKBBI(self, daftar_kata):
         for hasil in daftar_kata:
             kata = hasil[0].lower()
-            hasil_kata = self.cek_KBBI(kata)
+            hasil_kata = self.checkKBBI(kata)
             if hasil_kata is not None:
                 if hasil_kata['phrase_type'] is None:
                     print(hasil_kata['phrase'], "digunakan ", hasil[1], "kali, ")
@@ -219,7 +224,7 @@ class PendeteksiKataTidakBaku:
                 kata_stem = stemmer.stem(kata)
                 print('Hasil stem : ', kata_stem)
                 # Cek lagi
-                hasil_kata = self.cek_KBBI(kata_stem)
+                hasil_kata = self.checkKBBI(kata_stem)
                 if hasil_kata is not None:
                     if hasil_kata['phrase_type'] is None:
                         print(hasil_kata['phrase'], "digunakan ", kata, "kali, ")
@@ -231,7 +236,7 @@ class PendeteksiKataTidakBaku:
                     print(kata, "bukan kata yang benar, kata ini digunakan ", hasil[1], "kali, ")
             print("\n")
 
-    def belajarKataBaru(self, daftar_kata):
+    def addNewWords(self, daftar_kata):
         for daftar in daftar_kata:
 
             asli = daftar
@@ -240,7 +245,7 @@ class PendeteksiKataTidakBaku:
             valid = "TIDAK"
 
 
-            if self.iniKataBaku(self, daftar) is True:
+            if self.hasKBBI(self, daftar) is True:
                 # Kata yang Baku
                 baku = "YA"
                 typo = "TIDAK"
@@ -249,13 +254,13 @@ class PendeteksiKataTidakBaku:
                 print(daftar, "baku")
             else:
                 print(daftar, "tidak")
-                if self.iniKataBaku(self, self.stemKata(daftar)) is True:
+                if self.hasKBBI(self, self.stemWord(daftar)) is True:
                     print(daftar, "stem baku")
                     baku = "YA"
-                    asli = self.stemKata(daftar)
+                    asli = self.stemWord(daftar)
                 else:
                     asli = "-"
 
-            self.tambahKamus('data/kamus_typo.csv', [daftar, asli,  typo, baku, valid, 0])
+            self.addWord('data/kamus_typo.csv', [daftar, asli,  typo, baku, valid, 0])
 
 

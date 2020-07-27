@@ -1,18 +1,30 @@
 from flask import Flask
 from flask import render_template, request, jsonify
 from flask_cors import CORS
-from ref_pendeteksi import PendeteksiKataTidakBaku as pendeteksi
-
+from ref_pendeteksi import Pendeteksi as pendeteksi
 app = Flask(__name__)
 CORS(app)
 
-
 @app.route("/")
-def hello():
-    return render_template('index.html')
+def main():
+    var = {
+        "showDebug": False
+    }
+    return render_template('index.html', data = var)
+
+@app.route("/kamus_data")
+def data():
+    var = {
+        "showDebug": False,
+        "data": pendeteksi.showWords(pendeteksi)
+    }
+
+    print(pendeteksi.showWords(pendeteksi))
+    return render_template('data.html', data = var)
+
 
 @app.route("/start_checker", methods=['GET', 'POST'])
-def start():
+def showResults():
     import numpy as np
     import time
 
@@ -27,7 +39,7 @@ def start():
         result = []
         kata_baru = []
         for hasil in daftar_kata:
-            hasil_ditemukan = pendeteksi.cekKataMaxValue(hasil[0],'data/kamus_typo.csv')
+            hasil_ditemukan = pendeteksi.checkWords(hasil[0],'data/kamus_typo.csv')
             if hasil_ditemukan is not "":
                 result.append([hasil_ditemukan[0], hasil_ditemukan[3], hasil_ditemukan[4]])
 
@@ -44,19 +56,19 @@ def start():
 
         # BELAJAR KATA BARU
         for hasil in daftar_kata:
-            hasil_ditemukan = pendeteksi.cekKata(hasil[0], 'data/kamus_typo.csv')
+            hasil_ditemukan = pendeteksi.checkWord(hasil[0], 'data/kamus_typo.csv')
             if hasil_ditemukan is "":
                 print("Tidak mengenal:", hasil[0])
                 kata_baru.append(hasil[0])
         if len(kata_baru) > 0:
             print("Belajar Kata Baru...")
             print(daftar_kata)
-            pendeteksi.belajarKataBaru(pendeteksi, kata_baru)
+            pendeteksi.addNewWords(pendeteksi, kata_baru)
 
             ## ULANGI PENGECEKAN
             result = [] # reset
             for hasil in daftar_kata:
-                hasil_ditemukan = pendeteksi.cekKataMaxValue(hasil[0], 'data/kamus_typo.csv')
+                hasil_ditemukan = pendeteksi.checkWords(hasil[0], 'data/kamus_typo.csv')
                 if hasil_ditemukan is not "":
                     result.append([hasil_ditemukan[0], hasil_ditemukan[3], hasil_ditemukan[4]])
 
@@ -69,31 +81,31 @@ def start():
         return jsonify(result)
 
 @app.route("/check_kata", methods=['GET', 'POST'])
-def check():
+def getWord():
     import numpy as np
 
     text = request.values.get('text')
 
     result = []
 
-    result = pendeteksi.getKataMaxValue(text, 'data/kamus_typo.csv')
+    result = pendeteksi.getWords(text, 'data/kamus_typo.csv')
 
     return jsonify(result)
 
 @app.route("/insert_kata", methods=['GET', 'POST'])
-def insert_kata():
+def sendCorrection():
     kata = request.values.get('kata_typo')
     saran = request.values.get('kata_baku')
     ini_typo = request.values.get('ini_typo')
     ini_baku = request.values.get('ini_baku')
     ini_valid = request.values.get('ini_valid')
 
-    pendeteksi.tambahSaran(pendeteksi, 'data/kamus_typo.csv', [kata, saran, ini_typo, ini_baku, ini_valid])
+    pendeteksi.addCorrection(pendeteksi, 'data/kamus_typo.csv', [kata, saran, ini_typo, ini_baku, ini_valid])
 
     return "ok"
 @app.route("/reset_kata", methods=['GET', 'POST'])
-def reset_kata():
-    if pendeteksi.resetKamusKata(pendeteksi):
+def resetData():
+    if pendeteksi.clearData(pendeteksi):
         return "ok"
     else:
         return "fail"

@@ -1,8 +1,9 @@
-<!-- templates/index.html -->
+<!DOCTYPE html>
 <html>
   <head>
     <title>Deteksi Typo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <style>
       body {
@@ -72,6 +73,75 @@
           text-align: right;
           padding: 10px;
        }
+
+       #debug-area {
+          background-color: #000;
+          margin: 20px 0px 0px 0px;
+          border: solid 1px #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+
+       #debug-area pre {
+          margin: 5px;
+          color: #ccc;
+       }
+
+        .typed-cursor{
+           color: white;
+           opacity: 1;
+           animation: blink 0.7s infinite;
+        }
+        @keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+
+        #info-area {
+          background-color: #fff;
+          font-size: 12pt;
+          margin: 20px 0px 0px 0px;
+          padding: 15px;
+          border: solid 1px #ccc;
+          border-radius: 2px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          display: none;
+       }
+
+       #word-counter {
+          font-size: 8pt;
+       }
+
+       #word-counter i {
+          font-size: 12pt;
+       }
+
+       #info-area .badge {
+          font-size: 12pt;
+       }
+
+       #info-area ul > li > ul {
+         margin: 10px 0px 10px 10px;
+         padding: 0px;
+       }
+
+       #info-area ul > li > ul > li {
+         list-style-type: none;
+         margin: 0;
+         padding: 5px 0px;
+       }
+
+       #help-button {
+         color: #ccc;
+         position: absolute;
+         right: 15px;
+         top: 15px;
+       }
+
+       #help-button:hover {
+         color: #000;
+       }
     </style>
   </head>
   <body>
@@ -84,30 +154,47 @@
     </div>
 
     <div class="container">
-
-       <!--<div class="row">
-        <div class="col">
-          <div class="form-group">
-            <button class="btn btn-outline-primary"><i class="fa fa-file"></i> Dokumen</button>
-          </div>
-        </div>
-       </div>-->
-
       <div class="row" id="input-area">
         <div class="col" style="border-right: solid 1px #ccc !important;">
           <div class="form-group">
             <label></label>
-            <textarea class="form-control" id="input-text"></textarea>
+            <textarea class="form-control" id="input-text" placeholder="Masukan Kata sampai dengan 500"></textarea>
             <div class="counter"></div>
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label></label>
-            <div id="output-text"></div>
+            <div id="output-text">Hasil</div>
+
+            <span id="help-button"><i class="fa fa-info-circle"></i> </span>
           </div>
         </div>
       </div>
+ {% if data['showDebug'] == True %}
+       <div class="row" id="debug-area">
+          <div class="col">
+            <pre class="typed" id="debug-text"><span class="typed-cursor">|</span> </pre>
+          </div>
+        </div>
+ {% endif %}
+        <div class="row" id="info-area">
+          <div class="col">
+              <ul>
+                  <li>Klik di area luar atau sembarang tempat (selain di bagian <i>Input Text</i>) untuk memulai pendeteksian</li>
+                  <li>
+                      Hasil pendeteksian akan tampil di kolom sebelah kanan dan diberikan <i>highlight</i> pada setiap kata dengan warna sebagai berikut:
+                      <ul>
+                          <li><span class="badge badge-danger">Teks Typo ditandai seperti ini.</span></li>
+                          <li><span class="badge badge-warning">Teks yang belum diketahui ditandai seperti ini, biasanya kata tersebut belum bisa dipastikan benar atau salah.</span></li>
+                          <li><span class="badge"><i>Teks yang merupakan istilah asing akan dicetak miring.</i></span></li>
+                      </ul>
+                  </li>
+                  <li>
+                      Untuk melakukan koreksi, klik pada kata yang akan diberikan koreksi dan pilih <span class="fa fa-pencil-square-o"></span> Koreksi.
+                  </li>
+              </ul>
+        </div>
     </div>
       <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -198,6 +285,7 @@
          result = JSON.parse(res)
           $.each(result, function(key, value) {
                 console.log(value)
+                $('#debug-text').html(value);
           });
     });
 
@@ -233,6 +321,10 @@
       //$(this).find(".modal-body").text(res);
   });
 
+  $("#help-button").click(function(){
+      $("#info-area").toggle();
+  });
+
   $('.progress').hide();
   $('.rekom').hide();
 
@@ -246,7 +338,7 @@
       $.each(inputtext.split(" "), function(key, value) {
         count = count + 1;
       });
-      $(".counter").html(count + "/500");
+      $(".counter").html("<span id='word-counter'><i class='fa fa-file-word-o'></i> " + count + "/500</span>");
 
       if (count >= 500)
       {
@@ -255,9 +347,18 @@
       }
     })
 
+      let insertDebug = (word) => {
+        $('#debug-text').append(word);
+      };
+      let writeDebug = (word) => {
+        $('#debug-text').html(word);
+      };
+
     function start_checker() {
+
       $('.progress').show();
       console.log('Starting...')
+      $('#debug-text').html("Memulai...");
       $('#input-text').val($('#input-text').val() + " "); // add space
 
       $('.progress-bar').css('width', '20%')
@@ -280,9 +381,12 @@
       },
       });
 
+      writeDebug("<br>Memeriksa daftar kata: ");
+
       let outputtext = $('#output-text').html().trim();
       $('#output-text').html('');
       $.each(outputtext.split(" "), function(key, value) {
+          insertDebug("<br>Ditemukan -> " + value + " ");
           $('#output-text').append('<div class="typo badge badge-default" id="typo-' + key + '" data-text="'+value+'">'+value+'<div class="rekom rekom-' + key + '"></div></div>');
       });
 
@@ -299,6 +403,8 @@
           if(res != "") {
            result = JSON.parse(res)
            value = result
+
+          insertDebug("<br>Mengambil data dari kamus:")
 
           $.notify({
           // options
@@ -333,19 +439,26 @@
                   let valid = value[2];
                   let new_text = ' ' + $('#output-text').html().toLowerCase() + ' ';
                   let replace_text = new_text; //new_text.replace(' ' + value[0] + ' ', ' <div class="typo badge badge-danger" id="typo-' + key + '" data-text="'+value+'">'+value+'<div class="rekom rekom--' + key + '"></div></div> '); //new_text.replace(' ' + value + ' ', ' ['+value+'] ');
+                  let debug = "";
 
                   if(baku == "TIDAK" && valid == "YA")
                   { // kata valid tapi tidak baku
+                    debug = "tidak baku tapi bisa digunakan";
                     replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-default" id="typo-' + key + '" data-text="'+kata+'"><i>'+kata+'</i></span><');
                   } else if(baku == "YA" && valid == "TIDAK")
                   { // kata baku tapi tidak valid
+                    debug = "baku tapi tidak bisa digunakan atau masih meragukan";
                     replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-warning" id="typo-' + key + '" data-text="'+kata+'">'+kata+'</span><');
                   } else if(baku == "TIDAK" && valid == "TIDAK")
                   { // kata tidak baku dan tidak valid tapi tidak typo
-                    replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-warning" id="typo-' + key + '" data-text="'+kata+'"><i>'+kata+'</i></span><');
+                    debug = "tidak typo tapi tidak baku dan tidak bisa digunakan";
+                    replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-danger" id="typo-' + key + '" data-text="'+kata+'"><i>'+kata+'</i></span><');
                   } else {
+                    debug = "kata tidak typo, baku dan bisa digunakan";
                     replace_text = replace_text.split('>' + kata + '<').join('><span class="badge badge-danger" id="typo-' + key + '" data-text="'+kata+'">'+kata+'</span><');
                   }
+
+                  insertDebug("<br>Ditemukan hasil -> \"" + value[0] + "\" adalah kata " + debug)
 
                   $('#output-text').html(replace_text)
                   //console.log(replace_text)
@@ -408,18 +521,20 @@
                       console.log(result)
                       value = result
                       //$.each(result, function(key, value) {
-                             let html_koreksi = '<br><a href="" style="color: gray; font-size: 8pt" data-toggle="modal" data-id="'+box.getAttribute('id')+'" data-text="'+value[0]+'" data-target="#myModal">Koreksi?</a>';
+                             let html_koreksi = '<br><a href="" style="color: gray; font-size: 8pt" data-toggle="modal" data-id="'+box.getAttribute('id')+'" data-text="'+value[0]+'" data-target="#myModal"><span class="fa fa-pencil-square-o"></span> Koreksi</a>';
                              $('#' + box.getAttribute('id') + ' > .rekom').show();
                              $('#' + box.getAttribute('id') + ' > .rekom').html('');
                              if(value[1] != '') {
                               $('#' + box.getAttribute('id') + ' > .rekom').html("Harusnya : "+value[1]);
                              }
                              $('#' + box.getAttribute('id') + ' > .rekom').append(html_koreksi);
+                             insertDebug("<br>Menampilkan kata \"" + value[0] + "\" kata ini disarankan ditulis menjadi \"" + value[1] + '"');
                       //});
                 });
                 req.fail(function( jqXHR, textStatus ) {
                   console.log('Error...' + textStatus );
                   //alert( "Request failed: " + textStatus );
+                  insertDebug("<br>" + textStatus)
                      $.notify({
                         // options
                         message: textStatus
@@ -445,13 +560,16 @@
             });
             $('.progress-bar').css('width', '100%')
             setTimeout(function() {  $('.progress').hide(); $('.progress-bar').css('width', '0%') }, 2000); // reset loading
+            insertDebug("<br>Selesai")
             console.log('Finished...')
           })
           request.fail(function( jqXHR, textStatus ) {
             console.log('Error...' + textStatus );
+            insertDebug("<br>" + textStatus)
 
             $('.progress').hide();
             if(textStatus == 'timeout') {
+              insertDebug("<br>Mengulang...")
               $.notify({
               // options
               message: "Retrying..."
@@ -474,6 +592,7 @@
               $('#output-text').html($('#input-text').val())
               start_checker();
             } else {
+               insertDebug("<br>" + textStatus)
                $.notify({
                     // options
                     message: textStatus
@@ -529,6 +648,7 @@
                 },
             });
             console.log("Data: " + data + "\nStatus: " + status);
+            insertDebug("<br>status");
             $('#myModal').modal('hide')
 
             $('#output-text').html($('#input-text').val())
@@ -536,6 +656,9 @@
         });
   });
 
+
+  </script>
+  <script>
 
   </script>
   </body>
