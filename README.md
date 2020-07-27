@@ -1,4 +1,4 @@
-# Pendeteksi Typo Q-Learning (github.com/refsigregory/pendeteksi-typo)
+# Pendeteksi Typo Q-Learning (<https://github.com/refsigregory/pendeteksi-typo>)
 
 # Cara Install
 * Install Python>=3.9
